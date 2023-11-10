@@ -1,5 +1,6 @@
 <script>
   import { currentSite } from "../lib/store";
+  import AiApp from "./ai/AiApp.svelte";
 </script>
 
 <div class="mockup-browser border border-base-300">
@@ -12,10 +13,14 @@
       {#if $currentSite === "crud"}https://crud-post.com{/if}
     </div>
   </div>
-  <div class="flex justify-center px-4 py-16 border-t border-base-300">
-    {#if $currentSite === "intro"}Choose a tab to see a project{/if}
+  <div>
+    {#if $currentSite === "intro"}<div
+        class="pt-[11rem] h-[24rem] justify-center border-t border-base-300"
+      >
+        Choose a tab to see a project
+      </div>{/if}
     {#if $currentSite === "portfolio"}portfolio{/if}
-    {#if $currentSite === "ai"}ai{/if}
+    {#if $currentSite === "ai"}<AiApp />{/if}
     {#if $currentSite === "chess"}chess{/if}
     {#if $currentSite === "crud"}crud{/if}
   </div>

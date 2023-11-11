@@ -1,6 +1,9 @@
 <script>
+  import { fade } from "svelte/transition";
   import { currentSite } from "../lib/store";
   import AiApp from "./ai/AiApp.svelte";
+  import Hero from "./hero/hero.svelte";
+  import Crud from "./crud/crud.svelte";
 </script>
 
 <div class="mockup-browser border border-base-300">
@@ -15,13 +18,36 @@
   </div>
   <div>
     {#if $currentSite === "intro"}<div
+        out:fade={{ duration: 1000 }}
         class="pt-[11rem] h-[24rem] justify-center border-t border-base-300"
       >
         Choose a tab to see a project
       </div>{/if}
-    {#if $currentSite === "portfolio"}portfolio{/if}
-    {#if $currentSite === "ai"}<AiApp />{/if}
-    {#if $currentSite === "chess"}chess{/if}
-    {#if $currentSite === "crud"}crud{/if}
+    {#if $currentSite === "portfolio"}
+      <div
+        in:fade={{ delay: 1500, duration: 1000 }}
+        out:fade={{ duration: 1000 }}
+      >
+        <Hero />
+      </div>
+    {/if}
+    {#if $currentSite === "ai"}<div
+        in:fade={{ delay: 1500, duration: 1000 }}
+        out:fade={{ duration: 1000 }}
+      >
+        <AiApp />
+      </div>{/if}
+    {#if $currentSite === "chess"}<div
+        in:fade={{ delay: 1500, duration: 1000 }}
+        out:fade={{ duration: 1000 }}
+      >
+        chess
+      </div>{/if}
+    {#if $currentSite === "crud"}<div
+        in:fade={{ delay: 1500, duration: 1000 }}
+        out:fade={{ duration: 1000 }}
+      >
+        <Crud />
+      </div>{/if}
   </div>
 </div>

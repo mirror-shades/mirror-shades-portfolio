@@ -1,33 +1,39 @@
 <script lang="ts">
-  import { currentTheme } from "../lib/store";
+  import { currentTheme } from "../../lib/store";
   const themes = [
     "light",
     "dark",
     "cupcake",
-    "bumblebee",
+    "halloween",
     "emerald",
-    "corporate",
     "synthwave",
     "retro",
     "cyberpunk",
-    "valentine",
-    "halloween",
     "garden",
+    "valentine",
     "forest",
     "aqua",
+    "business",
+    "lemonade",
+    "lofi",
   ];
   let options: any;
 
   function setTheme(theme: string) {
+    if (theme === "light") {
+      theme = "winter";
+    }
     currentTheme.set(theme);
   }
 </script>
 
 <div class="dropdown dropdown-hover dropdown-end">
-  <label tabindex="0" class="btn m-1">Themes</label>
+  <button tabindex="0" class="btn-ghost border-primary w-32 btn m-1"
+    >Themes</button
+  >
   <ul
     tabindex="0"
-    class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+    class="dropdown-content bg-base ring-1 ring-primary z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
   >
     {#each themes as theme (theme)}
       <li>

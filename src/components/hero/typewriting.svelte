@@ -1,14 +1,27 @@
 <script lang="ts">
+  import Name from "./name.svelte";
   import Typewriter from "svelte-typewriter";
+  import { fly } from "svelte/transition";
+  import { backOut } from "svelte/easing";
+  import { quintOut } from "svelte/easing";
   let text: any;
   $: text = "React development";
+  let ticker = 1;
   let textSelection = [
     "React development",
     "Svelte development",
     "Smart Contracts",
     "Python development",
   ];
-  let ticker = 1;
+  let lines = [
+    "My name is",
+    "",
+    "<h1 class='text-secondary'>Logan Dembicki</h1>",
+    "",
+    "and I specialize in:",
+    "",
+  ];
+
   const textLoop = async () => {
     if (ticker > 3) {
       ticker = 0;
@@ -21,18 +34,27 @@
 </script>
 
 <h1>
-  Logan Dembicki
-  <br />
-  specializes in
-  <Typewriter>
-    {text}
-  </Typewriter>
+  <div class="lines">
+    {#each lines as line, i}
+      <div class="overflow">
+        <div
+          transition:fly={{
+            delay: 250,
+            duration: 300,
+            x: 100,
+            y: 500,
+            opacity: 0.5,
+            easing: quintOut,
+          }}
+        >
+          {@html line}
+        </div>
+      </div>
+    {/each}
+  </div>
+  <div class="pl-6 h-[4.5rem] bg-slate-200 text-black rounded-2xl w-[36rem]">
+    <Typewriter>
+      {text}
+    </Typewriter>
+  </div>
 </h1>
-
-<style>
-  h1 {
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans";
-    font-size: xxx-large;
-  }
-</style>

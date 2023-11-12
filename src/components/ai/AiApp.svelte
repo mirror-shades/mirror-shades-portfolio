@@ -24,6 +24,8 @@
   </div>
 </div>
 
+<!--spacer-->
+<div class="h-16" />
 <!--Body-->
 <div class="grid z-1 h-screen place-items-center">
   <div class="card highlight w-3/4 bg-base-100 shadow-xl">

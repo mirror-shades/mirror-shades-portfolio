@@ -1,13 +1,20 @@
 <script lang="ts">
   import OpenAI from "openai";
+  import AiNavbar from "./aiNavbar.svelte";
   let model = "dall-e-3";
-  let size = "1024x1024";
+  let size:
+    | "1024x1024"
+    | "256x256"
+    | "512x512"
+    | "1792x1024"
+    | "1024x1792"
+    | null
+    | undefined = "1024x1024";
   let quality: string | undefined = "standard";
   let image_url: string | undefined = "";
   let imagePrompt = "";
   let imageLock = false;
   const API = import.meta.env.VITE_OPENAI_API_KEY;
-
   const openai = new OpenAI({ apiKey: API, dangerouslyAllowBrowser: true });
 
   async function callDallE() {
@@ -22,7 +29,7 @@
           model: model,
           prompt: imagePrompt,
           n: 1,
-          size: "1024x1024",
+          size: size,
         });
         image_url = response.data[0].url;
       } catch {
@@ -44,6 +51,7 @@
   };
 </script>
 
+<!--imagebot-->
 <h1>ImageBot</h1>
 
 <select

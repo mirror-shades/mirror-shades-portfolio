@@ -2,7 +2,8 @@
   const balloon: any = document.getElementById("balloon");
 
   document.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "pump") {
+    let targetElementId = e.target as HTMLElement;
+    if (e.target && targetElementId.id === "pump") {
       const size = getComputedStyle(balloon).getPropertyValue("--size");
       balloon.style.setProperty("--size", parseFloat(size) + 0.2);
     }

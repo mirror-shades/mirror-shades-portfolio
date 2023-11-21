@@ -1,6 +1,6 @@
 <script lang="ts">
   import OpenAI from "openai";
-
+  import AiNavbar from "./aiNavbar.svelte";
   const API = import.meta.env.VITE_OPENAI_API_KEY;
   const openai = new OpenAI({ apiKey: API, dangerouslyAllowBrowser: true });
 

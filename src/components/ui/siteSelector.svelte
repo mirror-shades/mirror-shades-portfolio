@@ -1,6 +1,6 @@
 <script lang="ts">
   import ThemeSwitcher from "./themeSwitcher.svelte";
-  import { currentSite } from "../../lib/store";
+  import { currentSite } from "../../lib/state";
 
   function toggleSite(site: string) {
     currentSite.set(site);
@@ -33,28 +33,36 @@
         on:click={() => {
           toggleSite("portfolio");
         }}
-        class="btn-secondary join-item place-content-center w-28">Home</button
+        class="{$currentSite === 'portfolio'
+          ? 'btn-accent'
+          : 'btn-secondary'} join-item place-content-center w-28">Home</button
       >
 
       <button
         on:click={() => {
           toggleSite("ai");
         }}
-        class="btn-secondary join-item place-content-center w-28">AI</button
+        class="{$currentSite === 'ai'
+          ? 'btn-accent'
+          : 'btn-secondary'} join-item place-content-center w-28">AI</button
       >
 
       <button
         on:click={() => {
           toggleSite("chess");
         }}
-        class="btn-secondary join-item place-content-center w-28">Chess</button
+        class="{$currentSite === 'chess'
+          ? 'btn-accent'
+          : 'btn-secondary'} join-item place-content-center w-28">Chess</button
       >
 
       <button
         on:click={() => {
           toggleSite("crud");
         }}
-        class="btn-secondary join-item place-content-center w-28">CRUD</button
+        class="{$currentSite === 'crud'
+          ? 'btn-accent'
+          : 'btn-secondary'} join-item place-content-center w-28">CRUD</button
       >
     </div>
   </div>

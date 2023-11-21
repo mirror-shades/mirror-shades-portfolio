@@ -1,6 +1,6 @@
 <script>
   import Site from "./components/site.svelte";
-  import { currentTheme } from "./lib/store";
+  import { currentTheme } from "./lib/state";
 </script>
 
 <html lang="en" data-theme={$currentTheme}>

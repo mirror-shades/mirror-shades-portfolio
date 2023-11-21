@@ -25,6 +25,8 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@splidejs/svelte-splide": "^0.2.9",
+    "ethers": "^6.8.1",
     "openai": "^4.17.0"
   }
 }

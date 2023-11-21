@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { currentTheme } from "../../lib/store";
+  import { currentTheme } from "../../lib/state";
   const themes = [
     "light",
     "dark",
@@ -15,6 +15,7 @@
     "aqua",
     "business",
     "lemonade",
+    "coffee",
     "lofi",
   ];
   let options: any;
@@ -32,7 +33,6 @@
     >Themes</button
   >
   <ul
-    tabindex="0"
     class="dropdown-content bg-base ring-1 ring-primary z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
   >
     {#each themes as theme (theme)}

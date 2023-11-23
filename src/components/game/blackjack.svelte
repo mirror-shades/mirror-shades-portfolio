@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { updateDB } from "../crypto/localTokenDatabase";
   let chips: number = 10;
   let deck: any = [];
   let playerHand: any = [];
@@ -12,10 +13,10 @@
   let stage: string = "intro";
   let previous = bet;
 
-  function validator(node, value) {
+  function validator(node: any, value: any) {
     if (bet <= chips) {
       return {
-        update(value: number) {
+        update(value: any) {
           bet = value === null || bet < node.min ? previous : parseInt(value);
           previous = bet;
         },
@@ -177,8 +178,9 @@
     startGame();
   }
 
-  function handleChange(e) {
-    const value = Number(e.target.value);
+  function handleChange(e: Event) {
+    let t = e.target as HTMLInputElement;
+    const value = Number(t.value);
     if (!Number.isNaN(value)) {
       if (value > chips || value < 0) {
         bet = previous;
@@ -304,4 +306,10 @@
       }}>new game</button
     >
   {/if}
+  <br />
+  <button
+    on:click={() => {
+      updateDB("testAddress", chips);
+    }}>Cash Out</button
+  >
 {/if}

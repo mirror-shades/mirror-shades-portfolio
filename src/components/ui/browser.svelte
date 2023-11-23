@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { ethers } from "ethers";
   import { fade } from "svelte/transition";
   import { currentSite } from "../../lib/state";
   import AiApp from "../ai/AiApp.svelte";
@@ -8,7 +7,7 @@
   import BalloonPop from "../misc/balloonPop.svelte";
   import AiNavbar from "../ai/aiNavbar.svelte";
   import Slider from "../misc/slider.svelte";
-  import WalletConnect from "./walletConnect.svelte";
+  import WalletConnect from "../crypto/walletConnect.svelte";
 
   let unique = {};
   $: () => {
@@ -16,13 +15,11 @@
   };
   let duration = 250;
   let delay = 100;
-
-  function connectWallet() {}
 </script>
 
 <!--browser-->
 <div class="mockup-browser h-[52rem] border-primary border border-base-300">
-  <div class="mockup-browser-toolbar pb-3 border-b">
+  <div class="mockup-browser-toolbar h-[3rem] pb-3 border-b">
     <div class="input border border-base-300">
       {#if $currentSite === "intro"}https://intro.com{/if}
       {#if $currentSite === "portfolio"}https://portfolio.com{/if}

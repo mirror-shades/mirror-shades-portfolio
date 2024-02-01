@@ -49,20 +49,20 @@
 
       <button
         on:click={() => {
-          toggleSite("chess");
+          toggleSite("blackjack");
         }}
-        class="{$currentSite === 'chess'
+        class="{$currentSite === 'blackjack'
           ? 'btn-accent'
-          : 'btn-secondary'} join-item place-content-center w-28">Chess</button
+          : 'btn-secondary'} join-item place-content-center w-28">Gaming</button
       >
 
       <button
         on:click={() => {
-          toggleSite("crud");
+          toggleSite("crypto");
         }}
-        class="{$currentSite === 'crud'
+        class="{$currentSite === 'crypto'
           ? 'btn-accent'
-          : 'btn-secondary'} join-item place-content-center w-28">CRUD</button
+          : 'btn-secondary'} join-item place-content-center w-28">Crypto</button
       >
     </div>
   </div>

@@ -4,10 +4,10 @@
   import AiApp from "../ai/AiApp.svelte";
   import Hero from "../hero/hero.svelte";
   import Game from "../game/blackjack.svelte";
-  import BalloonPop from "../misc/balloonPop.svelte";
   import AiNavbar from "../ai/aiNavbar.svelte";
-  import Slider from "../misc/slider.svelte";
+  import Crypto from "../crypto/cryptoPage.svelte";
   import WalletConnect from "../crypto/walletConnect.svelte";
+  import Server from "../crypto/server.svelte";
 
   let unique = {};
   $: () => {
@@ -50,19 +50,20 @@
       >
         <AiApp />
       </div>{/if}
-    {#if $currentSite === "chess"}<div
-        class="absolute inset-0 mt-12"
-        in:fade={{ delay: delay, duration: duration }}
-        out:fade={{ duration: duration }}
-      >
-        <Slider />
-      </div>{/if}
-    {#if $currentSite === "crud"}<div
+    {#if $currentSite === "blackjack"}<div
         class="absolute inset-0 mt-12"
         in:fade={{ delay: delay, duration: duration }}
         out:fade={{ duration: duration }}
       >
         <Game />
+      </div>{/if}
+    {#if $currentSite === "crypto"}<div
+        class="absolute inset-0 mt-12"
+        in:fade={{ delay: delay, duration: duration }}
+        out:fade={{ duration: duration }}
+      >
+        <Crypto />
+        <Server />
       </div>
     {/if}
   </div>

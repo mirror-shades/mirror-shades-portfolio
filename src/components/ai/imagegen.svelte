@@ -1,6 +1,7 @@
 <script lang="ts">
   import OpenAI from "openai";
-  import AiNavbar from "./aiNavbar.svelte";
+  import { storedImageList } from "../../lib/state";
+  import RecentImages from "./recentImages.svelte";
   let model = "dall-e-3";
   let size:
     | "1024x1024"
@@ -32,6 +33,9 @@
           size: size,
         });
         image_url = response.data[0].url;
+        storedImageList.update((currentItems) => {
+          return [...currentItems, image_url];
+        });
       } catch {
         alert("Something went wrong, please refresh");
       }
@@ -93,6 +97,8 @@
 >
 
 <img alt="" src={image_url} />
+
+<RecentImages />
 
 <style>
   input {

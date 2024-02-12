@@ -7,7 +7,6 @@
   import AiNavbar from "../ai/aiNavbar.svelte";
   import Crypto from "../crypto/cryptoPage.svelte";
   import WalletConnect from "../crypto/walletConnect.svelte";
-  import Server from "../crypto/server.svelte";
 
   let unique = {};
   $: () => {
@@ -63,7 +62,6 @@
         out:fade={{ duration: duration }}
       >
         <Crypto />
-        <Server />
       </div>
     {/if}
   </div>

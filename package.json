@@ -34,7 +34,6 @@
     "openai": "^4.17.0",
     "siema": "^1.5.1",
     "svelte-carousel": "^1.0.25",
-    "svelte-pocketbase": "^0.0.4",
     "web3": "^4.2.2"
   }
 }

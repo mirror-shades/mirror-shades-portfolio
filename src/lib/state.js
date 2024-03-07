@@ -16,12 +16,13 @@ export let testEth = writable("0");
 export let mirrorChips = writable("0");
 export let account = writable(undefined);
 export let chatbot = writable(true);
-export let storedImageList = writable(storedImages);
+export let tempImageLink = writable("");
+export let ipfsImageLink = writable("");
+
 
 //games
 export let chips = writable(10);
 
 // Push relevant values to local storage
-storedImageList.subscribe((value) => localStorage.setItem('images', JSON.stringify(value)));
 currentSite.subscribe((value) => localStorage.setItem('site', value));
 currentTheme.subscribe((value) => localStorage.setItem('theme', value));

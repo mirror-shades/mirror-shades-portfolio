@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@splidejs/svelte-splide": "^0.2.9",
+    "axios": "^1.6.7",
     "ethers": "^6.8.1",
     "openai": "^4.17.0",
     "siema": "^1.5.1",

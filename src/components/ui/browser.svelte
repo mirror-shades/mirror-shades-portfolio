@@ -4,7 +4,6 @@
   import AiApp from "../ai/AiApp.svelte";
   import Hero from "../hero/hero.svelte";
   import Game from "../game/blackjack.svelte";
-  import AiNavbar from "../ai/aiNavbar.svelte";
   import Crypto from "../crypto/cryptoPage.svelte";
   import WalletConnect from "../crypto/walletConnect.svelte";
 
@@ -41,7 +40,6 @@
       </div>
     {/if}
     {#if $currentSite === "ai"}
-      <AiNavbar />
       <div
         class="absolute inset-0 mt-24"
         in:fade={{ delay: delay, duration: duration }}

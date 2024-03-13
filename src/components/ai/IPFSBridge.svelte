@@ -8,10 +8,11 @@
   export const ipfsImageLink = writable("");
 
   // Enhanced approach using Svelte's auto-subscription feature ($:)
-  let imageUrl;
+  let imageUrl =
+    "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qa2Jgqs09xO0Z74aohcNwVo5/user-M2OfWPliM2A1lIKxRKLLakAY/img-rZuoOYZi4e5Pn2U3Yw0sTOn9.png?st=2024-03-13T02%3A29%3A07Z&se=2024-03-13T04%3A29%3A07Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-13T01%3A49%3A37Z&ske=2024-03-14T01%3A49%3A37Z&sks=b&skv=2021-08-06&sig=jSEO4/oC7oWYoK1EAThLh8ar50/qY9scA2bFfTmcLH8%3D";
 
   // Automatically update imageUrl when tempImageLink changes
-  $: imageUrl = $tempImageLink;
+  // $: imageUrl = $tempImageLink;
 
   // Improved upload function with better error handling and structure
   export async function uploadToIPFS() {
@@ -53,8 +54,5 @@
     }
   }
 
-  // If needed, you can trigger actions on component mount here
-  onMount(async () => {
-    // e.g., initializing or specific actions on load
-  });
+  uploadToIPFS();
 </script>

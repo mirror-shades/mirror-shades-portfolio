@@ -16,7 +16,7 @@
 </script>
 
 <!--browser-->
-<div class="mockup-browser h-[52rem] border-primary border border-base-300">
+<div class="mockup-browser h-[42rem] border-primary border border-base-300">
   <div class="mockup-browser-toolbar h-[3rem] pb-3 border-b">
     <div class="input border border-base-300">
       {#if $currentSite === "intro"}https://intro.com{/if}

@@ -2,6 +2,7 @@
   import OpenAI from "openai";
   import { tempImageLink } from "../../lib/state";
   import uploadToIPFS from "./IPFSBridge.svelte";
+  import IpfsBridge from "./IPFSBridge.svelte";
   let model = "dall-e-3";
   let size:
     | "1024x1024"
@@ -112,4 +113,5 @@
   <div>
     <img alt="" src={imageUrl} />
   </div>
+  <IpfsBridge />
 </main>

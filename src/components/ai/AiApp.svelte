@@ -1,8 +1,6 @@
 <script lang="ts">
   import OpenAI from "openai";
   import { tempImageLink } from "../../lib/state";
-  import uploadToIPFS from "./IPFSBridge.svelte";
-  import IpfsBridge from "./IPFSBridge.svelte";
   let model = "dall-e-3";
   let size:
     | "1024x1024"
@@ -18,6 +16,7 @@
   let imageLock = false;
   let cost = 0;
   const API = import.meta.env.VITE_OPENAI_API_KEY;
+  const JWT = import.meta.env.VITE_PINATA_API_KEY;
 
   const openai = new OpenAI({ apiKey: API, dangerouslyAllowBrowser: true });
 
@@ -43,6 +42,31 @@
         alert("Something went wrong, please refresh");
       }
       imageLock = false;
+    }
+  }
+
+  async function uploadToIPFS(url: string) {
+    try {
+      const urlStream = await fetch(url);
+      const arrayBuffer = await urlStream.arrayBuffer();
+      const blob = new Blob([arrayBuffer]);
+
+      const data = new FormData();
+      data.append("file", blob);
+      const upload = await fetch(
+        "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
+          body: data,
+        }
+      );
+      const uploadRes = await upload.json();
+      console.log(uploadRes);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -105,7 +129,9 @@
       <button
         class="btn btn-secondary"
         on:click={() => {
-          uploadToIPFS();
+          uploadToIPFS(
+            "https://oaidalleapiprodscus.blob.core.windows.net/private/org-qa2Jgqs09xO0Z74aohcNwVo5/user-M2OfWPliM2A1lIKxRKLLakAY/img-aG87N7KF7rstSMrcBvJLGMwk.png?st=2024-03-15T17%3A46%3A34Z&se=2024-03-15T19%3A46%3A34Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-15T06%3A39%3A06Z&ske=2024-03-16T06%3A39%3A06Z&sks=b&skv=2021-08-06&sig=R/%2BT/L2efFQqmCtdK1OyPedIWtFwMuEmKXLq0KgFfSM%3D"
+          );
         }}>MINT NFT</button
       >
     {/if}
@@ -113,5 +139,4 @@
   <div>
     <img alt="" src={imageUrl} />
   </div>
-  <IpfsBridge />
 </main>

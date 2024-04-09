@@ -1,28 +1,25 @@
+import { create } from '@web3-storage/w3up-client'
+
+const file = new File(['https://oaidalleapiprodscus.blob.core.windows.net/private/org-qa2Jgqs09xO0Z74aohcNwVo5/user-M2OfWPliM2A1lIKxRKLLakAY/img-VjIEdv1L5Yb7DtGDXVefUXwD.png?st=2024-04-09T02%3A16%3A11Z&se=2024-04-09T04%3A16%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-04-09T00%3A11%3A29Z&ske=2024-04-10T00%3A11%3A29Z&sks=b&skv=2021-08-06&sig=dXGXIH/uLS1w3jqKX/BIH15B8ZWU0tE6HFfDVW6hVJo%3D'], 'nft.png')
+ 
+const client = await create()
+
+const myAccount = await client.login('logan.dembicki@gmail.com')
+
+const space = await client.createSpace('my-awesome-space')
 
 
-  const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIwNjEzMTY3Yy1jMjZjLTQyZmQtYTM2YS1lZmFlYjBiNTg2ZjAiLCJlbWFpbCI6ImxvZ2FuLmRlbWJpY2tpQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJmOWM2Y2JjOWViM2FkZjgzZTQzNCIsInNjb3BlZEtleVNlY3JldCI6ImUxMzZjMTE2ZmVmNDdiZDQyOGRhZmIwYWEyN2E5ODE4NjZlNWQ2Njg5MzhkNTRmNGFkY2UzYTU5MmRkMGY5MzEiLCJpYXQiOjE3MTA0NTI0NTB9.BL5st6BecHAh0QUlTi_TQfIsqhxhOQEy1m2P0CP6Zuw";
+await myAccount.provision(space.did())
 
-export default async function uploadToIPFS(url) {
-  try {
-    const urlStream = await fetch(url);
-    const arrayBuffer = await urlStream.arrayBuffer();
-    const blob = new Blob([arrayBuffer]);
+await space.save()
 
-    const data = new FormData();
-    data.append("file", blob);
-    const upload = await fetch(
-      "https://api.pinata.cloud/pinning/pinFileToIPFS",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${JWT}`,
-        },
-        body: data,
-      }
-    );
-    const uploadRes = await upload.json();
-    console.log(uploadRes);
-  } catch (error) {
-    console.log(error);
-  }
-}
+await client.setCurrentSpace(space.did())
+
+// const recovery = await space.createRecovery(myAccount.did())
+// await client.capability.access.delegate({
+//   space: space.did(),
+//   delegations: [recovery],
+// })
+   
+// await client.uploadFile(file)
+

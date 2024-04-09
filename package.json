@@ -30,8 +30,10 @@
   },
   "dependencies": {
     "@splidejs/svelte-splide": "^0.2.9",
+    "@web3-storage/w3up-client": "^12.5.0",
     "axios": "^1.6.7",
     "ethers": "^6.8.1",
+    "files-from-path": "^1.0.4",
     "openai": "^4.17.0",
     "siema": "^1.5.1",
     "svelte-carousel": "^1.0.25",
